@@ -1,0 +1,228 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Based Answer Sheet Analyzer</title>
+    <link rel="icon" href="{% static 'logo.png' %}" type="image/png">  
+    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-glow: #5adaff;
+            --secondary-glow: #5468ff;
+            --hover-color: #03dac5;
+        }
+
+        body {
+            font-family: "Afacad Flux", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .background-radial-gradient {
+            background-color: hsl(218, 41%, 15%);
+            background-image: radial-gradient(650px circle at 0% 0%, hsl(218, 41%, 35%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%),
+                              radial-gradient(1250px circle at 100% 100%, hsl(218, 41%, 45%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%);
+            min-height: 100vh;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: rgba(0, 0, 0, 0.85);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-img {
+            width: 70px;
+            height: auto;
+        }
+
+        .headline {
+            font-size: 1.6rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #fff, var(--primary-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--hover-color);
+        }
+
+        /* Highlighted History Link */
+        .history-link {
+            color: var(--primary-glow) !important;
+            border: 1px solid var(--primary-glow);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        .history-link:hover {
+            background: var(--primary-glow);
+            color: #000 !important;
+        }
+
+        /* Sections Styling */
+        .hero, .features, .about, .testimonials, .faq, .cta {
+            padding: 80px 10%;
+            text-align: center;
+        }
+
+        .hero-content h1 { font-size: 3.2rem; margin-bottom: 20px; }
+        .hero-content p { font-size: 1.3rem; opacity: 0.9; margin-bottom: 40px; }
+
+        .feature-cards, .testimonial-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            width: 280px;
+            backdrop-filter: blur(5px);
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-glow);
+        }
+
+        /* Button Styling */
+        .button-29 {
+            background-image: radial-gradient(100% 100% at 100% 0, var(--primary-glow) 0, var(--secondary-glow) 100%);
+            border: 0;
+            border-radius: 8px;
+            box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
+            color: #fff;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: inherit;
+            height: 50px;
+            padding: 0 30px;
+            align-items: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: 0.2s;
+        }
+
+        .button-29:hover {
+            transform: translateY(-2px);
+            box-shadow: rgba(45, 35, 66, .4) 0 4px 8px;
+        }
+
+        .footer {
+            padding: 30px;
+            background: rgba(0,0,0,0.3);
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; padding: 20px; }
+            .nav-links { margin-top: 20px; gap: 15px; }
+            .hero-content h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body class="background-radial-gradient">
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="{% static 'logo.png' %}" alt="Logo" class="logo-img">
+        </div>
+        <div class="navbar-center">
+            <div class="headline">GradeGuru</div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/features">Features</a></li>
+            <li><a href="/form">Analyser</a></li>
+            <li><a href="/history" class="history-link">History</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Elevate Your Grading with AI</h1>
+            <p>Experience the most accurate and efficient answer sheet analysis tool for educators.</p>
+            <a href="/form" class="button-29">Get Started Now</a>
+        </div>
+    </header>
+
+    <section id="features" class="features">
+        <h2>Smart Features</h2>
+        <div class="feature-cards">
+            <div class="card">
+                <h3>Automated Grading</h3>
+                <p>High-speed analysis using advanced machine learning algorithms.</p>
+            </div>
+            <div class="card">
+                <h3>Performance Analytics</h3>
+                <p>Track student progress with deep data insights and visualization.</p>
+            </div>
+            <div class="card">
+                <h3>Smart Storage</h3>
+                <p>Automatically save every result in your history dashboard.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About GradeGuru</h2>
+        <p style="max-width: 800px; margin: 0 auto; line-height: 1.6; font-size: 1.1rem;">
+            GradeGuru, created by <b>Team CodeX</b>, is designed to reduce the manual workload of teachers. 
+            By comparing student scripts against model answers, we provide a consistent and fair scoring system.
+        </p>
+    </section>
+
+    <section class="cta">
+        <h2>Ready to Save Time?</h2>
+        <p>Join HOD Pawan Sir and other educators today.</p>
+        <a href="/form" class="button-29">Start Analyzing</a>
+    </section>
+
+    <footer class="footer">
+        <p>© 2024 GradeGuru: by the Team CodeX. All rights reserved.</p>
+        <p><small>Developed for modern education systems.</small></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

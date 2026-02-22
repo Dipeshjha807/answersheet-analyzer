@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Dashboard</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+        table { width: 100%; border-collapse: collapse; background: white; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #007bff; color: white; }
+        tr:nth-child(even) { background: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h2>Student Marks History (Teacher Portal)</h2>
+    <table>
+        <tr>
+            <th>Student File Name</th>
+            <th>Total Marks</th>
+            <th>Percentage</th>
+            <th>Date Analyzed</th>
+        </tr>
+        {% for r in records %}
+        <tr>
+            <td>{{ r.student_name }}</td>
+            <td>{{ r.total_marks }}</td>
+            <td>{{ r.percentage }}%</td>
+            <td>{{ r.date_analyzed|date:"d M Y, H:i" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/form/">Analyze New Sheet</a>
+</body>
+</html>
